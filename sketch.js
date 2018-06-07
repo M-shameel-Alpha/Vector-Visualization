@@ -8,9 +8,10 @@ let rows;
 let vectors = [];
 
 let addVecButton;
+let dropdown1;
+let dropdown2;
 
-
-
+let idCounter = 0;
 
 
 function setup()
@@ -20,8 +21,11 @@ function setup()
 	j_hat = createVector(0,-1);
 	cn.parent("canvas");
 
-	addVecButton = select("addVec");
-	addVecButton.mousePressed();
+
+	dropdown1 = select("#select1");
+	dropdown2 = select("#select2");
+	addVecButton = select("#addVec");
+	addVecButton.mousePressed(vectorOp);
 
 
 	cols = width/scl;
@@ -105,15 +109,21 @@ function addVectors(x,y)
 	let b = floor(random(256));
 
 	newVec.color = color(r,g,b);
+	newVec.id = idCounter;
 	vectors.push(newVec);
 
-	let option1 = createElement("option", "(" + x + "," + -y + ")");
-	let option2 = createElement("option", "(" + x + "," + -y + ")");
+	let option1 = createElement("option", "(" + x + "," + y + ")");
+	let option2 = createElement("option", "(" + x + "," + y + ")");
+
+	option1.attribute("value",idCounter);
+	option2.attribute("value",idCounter);
 
 	option1.style("background-color", "rgb(" +r+","+g+","+b+")");
 	option1.parent("select1");
 	option2.style("background-color", "rgb(" + r + "," + g + "," + b + ")");
 	option2.parent("select2");
+
+	idCounter++;
 }
 
 function mousePressed()
@@ -128,7 +138,27 @@ function mousePressed()
 	}
 }
 
-function VectorAddition()
+function vectorOp()
 {
-	let vec1 = 
+	let v1;
+	let v2;
+	let v1_val = dropdown1.value();
+	let v2_val = dropdown2.value();
+	console.log(v1_val,v2_val);
+
+	for (let i=0;i<vectors.length;i++)
+	{
+		if(vectors[i].id == v1_val)
+		{
+			v1 = vectors[i].vec;
+		}if(vectors[i].id == v2_val)
+		{
+			v2 = vectors[i].vec;
+		}
+	}
+	
+	console.log(v1,v2);
+	let ret = p5.Vector.add(v1,v2);
+	console.log(ret);
+	addVectors(ret.x,ret.y);
 }
