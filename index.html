@@ -20,7 +20,7 @@
     }
 
 
-    #select1 , #select2
+    #select1 , #select2 , #select3
     {
       border-radius:10px;
       width : 100px;
@@ -47,7 +47,10 @@
       padding-left: 4px;
     }
 
-
+    canvas
+    {
+      cursor: none;
+    }
 
     html,body
     {
@@ -63,8 +66,8 @@
 
   </style>
 
-  <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
-  <script language="javascript" src="libraries/p5.dom.js"></script>
+  <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.js"></script>
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
 
   <div id="canvas">
@@ -74,15 +77,15 @@
 
 <body>
   <div id="items">
-    <h4><u>Add Vectors</u></h4>
+    <h4><u>Vectors Operations</u></h4>
     <br/>
-    <p>Add
-    <select id="select1">
-    </select>
-    And
-    <select id="select2">
-    </select>
+    
+    <p>OP:<select id="select1"></select>
+    VEC1:<select id="select2"></select>
+     &
+    VEC2:<select id="select3"></select>
     <button type="button" id="addVec"><p>Make Vector</p></button></p>
+
   </div>
 </body>
 
